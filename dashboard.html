@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventaris - Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f7f6f3;
+            color: #1a1a18;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 190px;
+            background-color: #fff;
+            border-right: 0.5px solid #e0ded8;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-logo {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 15px;
+            border-bottom: 0.5px solid #e0ded8;
+            height: 64px;
+            box-sizing: border-box;
+        }
+
+        .sidebar-logo i {
+            font-size: 20px;
+        }
+
+        .nav-section {
+            padding: 20px 16px 10px 16px;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #888;
+            transition: all 0.2s;
+            border-left: 2px solid transparent;
+        }
+
+        .nav-item i {
+            font-size: 18px;
+        }
+
+        .nav-item.active {
+            background-color: #f7f6f3;
+            color: #1a1a18;
+            border-left: 2px solid #1a1a18;
+        }
+
+        .nav-item:hover:not(.active) {
+            color: #555;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .topbar {
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+
+        .avatar-container {
+            position: relative;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            background-color: #e8e6e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .avatar-dropdown {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 160px;
+            background-color: #fff;
+            border: 0.5px solid #e0ded8;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: none;
+            flex-direction: column;
+            padding: 12px 0;
+            z-index: 100;
+        }
+
+        .avatar-dropdown.show {
+            display: flex;
+        }
+
+        .user-info {
+            padding: 0 16px 12px 16px;
+        }
+
+        .user-name {
+            font-size: 13px;
+            font-weight: 500;
+            display: block;
+        }
+
+        .user-role {
+            font-size: 11px;
+            color: #888;
+            display: block;
+        }
+
+        .divider {
+            height: 0.5px;
+            background-color: #e0ded8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-item {
+            padding: 10px 16px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f7f6f3;
+        }
+
+        .logout {
+            color: #c0392b;
+        }
+
+        .page-body {
+            padding: 24px;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0 0 4px 0;
+        }
+
+        .page-subtitle {
+            font-size: 13px;
+            color: #888;
+            margin: 0 0 24px 0;
+        }
+
+        .placeholder-text {
+            font-size: 13px;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <i class="ti ti-package"></i>
+            <span>Inventaris</span>
+        </div>
+        <div class="nav-section">
+            <div class="nav-label">MENU</div>
+            <ul class="nav-menu">
+                <li class="nav-item active"><i class="ti ti-layout-dashboard"></i> Dashboard</li>
+                <li class="nav-item"><i class="ti ti-box"></i> Produk</li>
+                <li class="nav-item"><i class="ti ti-tag"></i> Kategori</li>
+                <li class="nav-item"><i class="ti ti-arrows-exchange"></i> Stok</li>
+                <li class="nav-item"><i class="ti ti-truck"></i> Supplier</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div class="avatar-container">
+                <div class="avatar" id="avatarBtn">LA</div>
+                <div class="avatar-dropdown" id="avatarDropdown">
+                    <div class="user-info">
+                        <span class="user-name">Lion</span>
+                        <span class="user-role">Administrator</span>
+                    </div>
+                    <div class="divider"></div>
+                    <a href="login.html" class="dropdown-item logout">
+                        <i class="ti ti-logout"></i> Keluar
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-body">
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-subtitle">Selamat datang kembali, Lion</p>
+            <p class="placeholder-text">Konten belum tersedia.</p>
+        </div>
+    </div>
+
+    <script>
+        const avatarBtn = document.getElementById('avatarBtn');
+        const avatarDropdown = document.getElementById('avatarDropdown');
+
+        avatarBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            avatarDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!avatarDropdown.contains(e.target) && e.target !== avatarBtn) {
+                avatarDropdown.classList.remove('show');
+            }
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!avatarDropdown.contains(e.target) && e.target !== avatarBtn) {
+                avatarDropdown.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
