@@ -1,4 +1,6 @@
+//udah dibikin ke email github
 package main
+
 
 import (
 	"embed"
