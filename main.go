@@ -1,31 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+    "fmt"
+    "net/http"
 )
 
-func main() {
-	router := chi.NewRouter()
-
-	router.Use(middleware.Logger)
-
-	router.Get("/hello", basicHandler)
-
-	server := &http.Server{
-		Addr:    ":3000",
-		Handler: router,
-	}
-
-	err := server.ListenAndServe()
-	if err != nil {
-		fmt.Println("failed to listen to server", err)
-	}
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Selamat datang di Backend Golang!")
 }
 
-func basicHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("hello, world!"))
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Halo! Kamu sedang mengakses halaman Hello.")
+}
+
+func main() {
+    http.HandleFunc("/", homeHandler)
+
+    http.HandleFunc("/hello", helloHandler)
+
+    fmt.Println("Server berjalan di http://localhost:3000")
+
+    err := http.ListenAndServe(":3000", nil)
+    if err != nil {
+        fmt.Println("Error saat menjalankan server:", err)
+    }
 }
