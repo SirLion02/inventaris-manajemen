@@ -1,27 +1,37 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
+	"embed"
+	"fmt"
+	"html/template"
+	"net/http"
 )
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprint(w, "Selamat datang di Backend Golang!")
+//go:embed template/*
+var templateFS embed.FS
+var templates *template.Template
+
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	templates.ExecuteTemplate(w, "login.html", nil)
 }
 
-func helloHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprint(w, "Halo! Kamu sedang mengakses halaman Hello.")
+func dashboardHandler(w http.ResponseWriter, r *http.Request) {
+	templates.ExecuteTemplate(w, "dashboard.html", nil)
 }
 
 func main() {
-    http.HandleFunc("/", homeHandler)
+	templates = template.Must(template.ParseFS(templateFS, "template/*.html"))
 
-    http.HandleFunc("/hello", helloHandler)
+	fileServer := http.FileServer(http.FS(templateFS))
+	http.Handle("/static/", http.StripPrefix("/static/", fileServer))
 
-    fmt.Println("Server berjalan di http://localhost:3000")
+	http.HandleFunc("/login", loginHandler)
+	http.HandleFunc("/dashboard", dashboardHandler)
 
-    err := http.ListenAndServe(":3000", nil)
-    if err != nil {
-        fmt.Println("Error saat menjalankan server:", err)
-    }
+	fmt.Println("Server berjalan di http://localhost:3000")
+
+	err := http.ListenAndServe(":3000", nil)
+	if err != nil {
+		fmt.Println("Error saat menjalankan server:", err)
+	}
 }
