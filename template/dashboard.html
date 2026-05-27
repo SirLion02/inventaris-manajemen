@@ -19,15 +19,19 @@
             <div class="nav-section">
                 <div class="nav-label">MENU</div>
                 <ul class="nav-menu">
-                    <li class="nav-item active">
+                    <li class="nav-item active" data-page="dashboard-content">
                         <i class="ti ti-layout-dashboard"></i> Dashboard
                     </li>
-                    <li class="nav-item"><i class="ti ti-box"></i> Produk</li>
-                    <li class="nav-item"><i class="ti ti-tag"></i> Kategori</li>
-                    <li class="nav-item">
+                    <li class="nav-item" data-page="produk">
+                        <i class="ti ti-box"></i> Produk
+                    </li>
+                    <li class="nav-item" data-page="kategori">
+                        <i class="ti ti-tag"></i> Kategori
+                    </li>
+                    <li class="nav-item" data-page="stok">
                         <i class="ti ti-arrows-exchange"></i> Stok
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" data-page="supplier">
                         <i class="ti ti-truck"></i> Supplier
                     </li>
                 </ul>
@@ -51,11 +55,7 @@
                 </div>
             </div>
 
-            <div class="page-body">
-                <h1 class="page-title">Dashboard</h1>
-                <p class="page-subtitle">Selamat datang kembali, Lion</p>
-                <p class="placeholder-text">Konten belum tersedia.</p>
-            </div>
+            <div id="content-area"></div>
         </div>
 
         <script>
@@ -83,6 +83,49 @@
                 ) {
                     avatarDropdown.classList.remove("show");
                 }
+            });
+        </script>
+
+        <script>
+            // Ambil semua elemen nav-item
+            const navItems = document.querySelectorAll(".nav-item");
+            const contentArea = document.getElementById("content-area");
+
+            // Fungsi untuk load konten
+            async function loadPage(pageName) {
+                try {
+                    // Request ke backend: /partial?page=produk
+                    const response = await fetch(`/partial?page=${pageName}`);
+                    if (!response.ok)
+                        throw new Error("Halaman tidak ditemukan");
+
+                    const html = await response.text();
+
+                    // Masukkan HTML yang diterima ke dalam content-area
+                    contentArea.innerHTML = html;
+                } catch (error) {
+                    contentArea.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+                }
+            }
+
+            // Tambahkan event listener ke setiap menu
+            navItems.forEach((item) => {
+                item.addEventListener("click", function () {
+                    // 1. Hapus class active dari semua menu, tambahkan ke yang diklik
+                    navItems.forEach((i) => i.classList.remove("active"));
+                    this.classList.add("active");
+
+                    // 2. Ambil nama page dari attribute data-page
+                    const page = this.getAttribute("data-page");
+
+                    // 3. Load kontennya
+                    loadPage(page);
+                });
+            });
+
+            // Load halaman default saat pertama kali dibuka
+            window.addEventListener("DOMContentLoaded", () => {
+                loadPage("dashboard-content");
             });
         </script>
     </body>

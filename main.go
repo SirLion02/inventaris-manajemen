@@ -21,6 +21,19 @@ func dashboardHandler(w http.ResponseWriter, r *http.Request) {
 	templates.ExecuteTemplate(w, "dashboard.html", nil)
 }
 
+func partialHandler(w http.ResponseWriter, r *http.Request) {
+    page := r.URL.Query().Get("page")
+    if page == "" {
+        http.Error(w, "Page not specified", http.StatusBadRequest)
+        return
+    }
+
+    err := templates.ExecuteTemplate(w, page+".html", nil)
+    if err != nil {
+        http.Error(w, "Page not found", http.StatusNotFound)
+    }
+}
+
 func main() {
 	templates = template.Must(template.ParseFS(templateFS, "template/*.html"))
 
@@ -29,6 +42,8 @@ func main() {
 
 	http.HandleFunc("/login", loginHandler)
 	http.HandleFunc("/dashboard", dashboardHandler)
+
+	http.HandleFunc("/partial", partialHandler)
 
 	fmt.Println("Server berjalan di http://localhost:3000")
 
