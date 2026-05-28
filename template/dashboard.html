@@ -9,6 +9,11 @@
             href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
         />
         <link rel="stylesheet" href="/static/template/style.css" />
+        <script
+            src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"
+            integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V"
+            crossorigin="anonymous"
+        ></script>
     </head>
     <body class="dashboard-page">
         <div class="sidebar">
@@ -19,10 +24,22 @@
             <div class="nav-section">
                 <div class="nav-label">MENU</div>
                 <ul class="nav-menu">
-                    <li class="nav-item active" data-page="dashboard-content">
+                    <li
+                        class="nav-item"
+                        hx-get="/partial?page=dashboard-content"
+                        hx-target="#content-area"
+                        hx-swap="innerHTML"
+                        hx-on:click="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active')"
+                    >
                         <i class="ti ti-layout-dashboard"></i> Dashboard
                     </li>
-                    <li class="nav-item" data-page="produk">
+                    <li
+                        class="nav-item"
+                        hx-get="/partial?page=produk"
+                        hx-target="#content-area"
+                        hx-swap="innerHTML"
+                        hx-on:click="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active')"
+                    >
                         <i class="ti ti-box"></i> Produk
                     </li>
                     <li class="nav-item" data-page="kategori">
@@ -55,7 +72,13 @@
                 </div>
             </div>
 
-            <div id="content-area"></div>
+            <!-- #content-area auto load saat buka -->
+            <div
+                id="content-area"
+                hx-get="/partial?page=dashboard-content"
+                hx-trigger="load"
+                hx-swap="innerHTML"
+            ></div>
         </div>
 
         <script>
@@ -83,49 +106,6 @@
                 ) {
                     avatarDropdown.classList.remove("show");
                 }
-            });
-        </script>
-
-        <script>
-            // Ambil semua elemen nav-item
-            const navItems = document.querySelectorAll(".nav-item");
-            const contentArea = document.getElementById("content-area");
-
-            // Fungsi untuk load konten
-            async function loadPage(pageName) {
-                try {
-                    // Request ke backend: /partial?page=produk
-                    const response = await fetch(`/partial?page=${pageName}`);
-                    if (!response.ok)
-                        throw new Error("Halaman tidak ditemukan");
-
-                    const html = await response.text();
-
-                    // Masukkan HTML yang diterima ke dalam content-area
-                    contentArea.innerHTML = html;
-                } catch (error) {
-                    contentArea.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
-                }
-            }
-
-            // Tambahkan event listener ke setiap menu
-            navItems.forEach((item) => {
-                item.addEventListener("click", function () {
-                    // 1. Hapus class active dari semua menu, tambahkan ke yang diklik
-                    navItems.forEach((i) => i.classList.remove("active"));
-                    this.classList.add("active");
-
-                    // 2. Ambil nama page dari attribute data-page
-                    const page = this.getAttribute("data-page");
-
-                    // 3. Load kontennya
-                    loadPage(page);
-                });
-            });
-
-            // Load halaman default saat pertama kali dibuka
-            window.addEventListener("DOMContentLoaded", () => {
-                loadPage("dashboard-content");
             });
         </script>
     </body>
