@@ -611,3 +611,231 @@ body {
     background: #1a1a18;
     color: #fff;
 }
+
+/* --- Kategori Page --- */
+.cat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+.cat-header-left h1 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin: 0;
+}
+.cat-header-left .subtitle {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 2px;
+}
+.btn-add-cat {
+    background: #1a1a18;
+    color: #fff;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
+
+.cat-toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+}
+.cat-search,
+.cat-filter {
+    background: #fff;
+    border: 0.5px solid #e0ded8;
+    border-radius: 8px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+.cat-search {
+    max-width: 260px;
+}
+.cat-search i,
+.cat-filter i {
+    font-size: 14px;
+    color: #bbb;
+}
+.cat-search span,
+.cat-filter span {
+    font-size: 12px;
+    color: #bbb;
+}
+.cat-filter span {
+    color: #888;
+}
+
+.cat-table-card {
+    background: #fff;
+    border: 0.5px solid #e0ded8;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.cat-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.cat-table th {
+    background: #f7f6f3;
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: left;
+    border-bottom: 0.5px solid #e0ded8;
+    padding: 8px 12px;
+}
+.cat-table td {
+    padding: 9px 12px;
+    font-size: 12px;
+    border-bottom: 0.5px solid #f0efe9;
+}
+.cat-table tr:last-child td {
+    border-bottom: none;
+}
+
+.cat-name {
+    font-size: 12px;
+    color: #1a1a18;
+    display: block;
+}
+.cat-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.cat-pagination {
+    border-top: 0.5px solid #e0ded8;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Supplier Page --- */
+.sup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+.sup-header-left h1 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin: 0;
+}
+.sup-header-left .subtitle {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 2px;
+}
+.btn-add-sup {
+    background: #1a1a18;
+    color: #fff;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
+
+.sup-toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+}
+.sup-search,
+.sup-filter {
+    background: #fff;
+    border: 0.5px solid #e0ded8;
+    border-radius: 8px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+.sup-search {
+    max-width: 260px;
+}
+.sup-search i,
+.sup-filter i {
+    font-size: 14px;
+    color: #bbb;
+}
+.sup-search span,
+.sup-filter span {
+    font-size: 12px;
+    color: #bbb;
+}
+.sup-filter span {
+    color: #888;
+}
+
+.sup-table-card {
+    background: #fff;
+    border: 0.5px solid #e0ded8;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.sup-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.sup-table th {
+    background: #f7f6f3;
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: left;
+    border-bottom: 0.5px solid #e0ded8;
+    padding: 8px 12px;
+}
+.sup-table td {
+    padding: 9px 12px;
+    font-size: 12px;
+    border-bottom: 0.5px solid #f0efe9;
+}
+.sup-table tr:last-child td {
+    border-bottom: none;
+}
+
+.sup-name {
+    font-size: 12px;
+    color: #1a1a18;
+    display: block;
+}
+.sup-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.sup-pagination {
+    border-top: 0.5px solid #e0ded8;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

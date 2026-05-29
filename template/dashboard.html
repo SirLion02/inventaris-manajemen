@@ -42,13 +42,25 @@
                     >
                         <i class="ti ti-box"></i> Produk
                     </li>
-                    <li class="nav-item" data-page="kategori">
+                    <li
+                        class="nav-item"
+                        hx-get="/partial?page=kategori"
+                        hx-target="#content-area"
+                        hx-swap="innerHTML"
+                        hx-on:click="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active')"
+                    >
                         <i class="ti ti-tag"></i> Kategori
                     </li>
-                    <li class="nav-item" data-page="stok">
+                    <!--<li class="nav-item" data-page="stok">
                         <i class="ti ti-arrows-exchange"></i> Stok
-                    </li>
-                    <li class="nav-item" data-page="supplier">
+                    </li>-->
+                    <li
+                        class="nav-item"
+                        hx-get="/partial?page=supplier"
+                        hx-target="#content-area"
+                        hx-swap="innerHTML"
+                        hx-on:click="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active')"
+                    >
                         <i class="ti ti-truck"></i> Supplier
                     </li>
                 </ul>
