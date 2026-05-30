@@ -31,13 +31,13 @@ This is a personal project for portofolio about Inventory Management using vanil
 ![Login Page](./screenshots/login.png)
 
 ### Dashboard Content
-![Dashboard](./screenshots/dashboard-content.png)
+![Dashboard](./screenshots/dashboard-content-v2.png)
 
 ### Produk Page
-![Produk](./screenshots/produk.png)
+![Produk](./screenshots/produk-v2.png)
 
 ### Kategori Page
-![Kategori](./screenshots/kategori.png)
+![Kategori](./screenshots/kategori-v2.png)
 
 ### Supplier Page
-![Supplier](./screenshots/supplier.png)
+![Supplier](./screenshots/supplier-v2.png)
