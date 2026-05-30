@@ -2,7 +2,7 @@
     <div class="prod-header">
         <div class="prod-header-left">
             <h1>Produk</h1>
-            <div class="subtitle">248 item terdaftar</div>
+            <div class="subtitle">{{len .}} item terdaftar</div>
         </div>
         <button class="btn-add-prod">
             <i class="ti ti-plus"></i> Tambah Produk
@@ -33,15 +33,18 @@
                 </tr>
             </thead>
             <tbody>
+                {{range .}}
                 <tr>
                     <td>
-                        <span class="prod-name">Beras Premium 5kg</span>
-                        <span class="prod-sku">SKU-001</span>
+                        <span class="prod-name">{{.Name}}</span>
+                        <span class="prod-sku">{{.SKU}}</span>
                     </td>
-                    <td><span class="cat-badge">Sembako</span></td>
-                    <td>Rp 58.000</td>
-                    <td>Rp 65.000</td>
-                    <td>120</td>
+                    <td><span class="cat-badge">{{.Category}}</span></td>
+                    <td>{{formatCurrency .PriceBuy}}</td>
+                    <td>{{formatCurrency .PriceSell}}</td>
+                    <td class="{{if lt .Stock 10}}stock-low{{end}}">
+                        {{.Stock}}
+                    </td>
                     <td>
                         <div class="prod-actions">
                             <button class="action-btn edit">
@@ -53,86 +56,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="prod-name">Minyak Goreng 2L</span>
-                        <span class="prod-sku">SKU-002</span>
-                    </td>
-                    <td><span class="cat-badge">Sembako</span></td>
-                    <td>Rp 28.000</td>
-                    <td>Rp 32.000</td>
-                    <td>85</td>
-                    <td>
-                        <div class="prod-actions">
-                            <button class="action-btn edit">
-                                <i class="ti ti-edit"></i>
-                            </button>
-                            <button class="action-btn delete">
-                                <i class="ti ti-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="prod-name">Sabun Mandi Cair</span>
-                        <span class="prod-sku">SKU-003</span>
-                    </td>
-                    <td><span class="cat-badge">Kebersihan</span></td>
-                    <td>Rp 18.000</td>
-                    <td>Rp 22.000</td>
-                    <td class="stock-low">4</td>
-                    <td>
-                        <div class="prod-actions">
-                            <button class="action-btn edit">
-                                <i class="ti ti-edit"></i>
-                            </button>
-                            <button class="action-btn delete">
-                                <i class="ti ti-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="prod-name">Gula Pasir 1kg</span>
-                        <span class="prod-sku">SKU-004</span>
-                    </td>
-                    <td><span class="cat-badge">Sembako</span></td>
-                    <td>Rp 13.000</td>
-                    <td>Rp 15.000</td>
-                    <td>60</td>
-                    <td>
-                        <div class="prod-actions">
-                            <button class="action-btn edit">
-                                <i class="ti ti-edit"></i>
-                            </button>
-                            <button class="action-btn delete">
-                                <i class="ti ti-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="prod-name">Teh Celup 25pcs</span>
-                        <span class="prod-sku">SKU-005</span>
-                    </td>
-                    <td><span class="cat-badge">Minuman</span></td>
-                    <td>Rp 9.000</td>
-                    <td>Rp 11.000</td>
-                    <td class="stock-low">7</td>
-                    <td>
-                        <div class="prod-actions">
-                            <button class="action-btn edit">
-                                <i class="ti ti-edit"></i>
-                            </button>
-                            <button class="action-btn delete">
-                                <i class="ti ti-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                {{end}}
             </tbody>
         </table>
         <div class="prod-pagination">

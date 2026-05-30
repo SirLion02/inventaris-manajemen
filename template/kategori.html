@@ -2,7 +2,7 @@
     <div class="cat-header">
         <div class="cat-header-left">
             <h1>Kategori</h1>
-            <div class="subtitle">12 kategori terdaftar</div>
+            <div class="subtitle">{{len .}} kategori terdaftar</div>
         </div>
         <button class="btn-add-cat">
             <i class="ti ti-plus"></i> Tambah Kategori
@@ -30,75 +30,39 @@
                 </tr>
             </thead>
             <tbody>
+                {{range .}}
                 <tr>
                     <td>
-                        <span class="cat-name">Sembako</span>
+                        <span class="cat-name">{{.Name}}</span>
                     </td>
-                    <td>145 produk</td>
+                    <td>{{.ProductCount}} produk</td>
                     <td>
                         <div class="cat-actions">
-                            <button class="action-btn edit"><i class="ti ti-edit"></i></button>
-                            <button class="action-btn delete"><i class="ti ti-trash"></i></button>
+                            <button class="action-btn edit">
+                                <i class="ti ti-edit"></i>
+                            </button>
+                            <button class="action-btn delete">
+                                <i class="ti ti-trash"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="cat-name">Kebersihan</span>
-                    </td>
-                    <td>32 produk</td>
-                    <td>
-                        <div class="cat-actions">
-                            <button class="action-btn edit"><i class="ti ti-edit"></i></button>
-                            <button class="action-btn delete"><i class="ti ti-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="cat-name">Elektronik</span>
-                    </td>
-                    <td>18 produk</td>
-                    <td>
-                        <div class="cat-actions">
-                            <button class="action-btn edit"><i class="ti ti-edit"></i></button>
-                            <button class="action-btn delete"><i class="ti ti-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="cat-name">Minuman</span>
-                    </td>
-                    <td>42 produk</td>
-                    <td>
-                        <div class="cat-actions">
-                            <button class="action-btn edit"><i class="ti ti-edit"></i></button>
-                            <button class="action-btn delete"><i class="ti ti-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="cat-name">Alat Tulis</span>
-                    </td>
-                    <td>11 produk</td>
-                    <td>
-                        <div class="cat-actions">
-                            <button class="action-btn edit"><i class="ti ti-edit"></i></button>
-                            <button class="action-btn delete"><i class="ti ti-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
+                {{end}}
             </tbody>
         </table>
         <div class="cat-pagination">
-            <span class="pagination-info">Menampilkan 1–5 dari 12 kategori</span>
+            <span class="pagination-info"
+                >Menampilkan 1–5 dari 12 kategori</span
+            >
             <div class="pagination-btns">
-                <button class="page-btn"><i class="ti ti-chevron-left"></i></button>
+                <button class="page-btn">
+                    <i class="ti ti-chevron-left"></i>
+                </button>
                 <button class="page-btn active">1</button>
                 <button class="page-btn">2</button>
-                <button class="page-btn"><i class="ti ti-chevron-right"></i></button>
+                <button class="page-btn">
+                    <i class="ti ti-chevron-right"></i>
+                </button>
             </div>
         </div>
     </div>

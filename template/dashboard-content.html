@@ -7,7 +7,7 @@
             <div class="stat-icon-box bg-blue-tint">
                 <i class="ti ti-box"></i>
             </div>
-            <div class="stat-value">248</div>
+            <div class="stat-value">{{.ProductCount}}</div>
             <div class="stat-subtext">item terdaftar</div>
         </div>
         <div class="stat-card">
@@ -28,7 +28,7 @@
             <div class="stat-icon-box bg-gray-tint">
                 <i class="ti ti-truck"></i>
             </div>
-            <div class="stat-value">8</div>
+            <div class="stat-value">{{.SupplierCount}}</div>
             <div class="stat-subtext">aktif</div>
         </div>
     </div>
@@ -40,41 +40,15 @@
                 <a href="#" class="widget-link">Lihat semua</a>
             </div>
             <div class="widget-list">
+                {{range .RecentProducts}}
                 <div class="widget-row">
                     <div class="row-info">
-                        <span class="row-main">Kertas A4 80gr</span>
-                        <span class="row-sub">Kertas & ATK</span>
+                        <span class="row-main">{{.Name}}</span>
+                        <span class="row-sub">{{.Category}}</span>
                     </div>
-                    <span class="stock-count">45</span>
+                    <span class="stock-count {{if lt .Stock 10}}stock-warning{{end}}">{{.Stock}}</span>
                 </div>
-                <div class="widget-row">
-                    <div class="row-info">
-                        <span class="row-main">Tinta Printer HP Black</span>
-                        <span class="row-sub">Tinta & Toner</span>
-                    </div>
-                    <span class="stock-count stock-warning">8</span>
-                </div>
-                <div class="widget-row">
-                    <div class="row-info">
-                        <span class="row-main">Flashdisk 32GB Sandisk</span>
-                        <span class="row-sub">Elektronik</span>
-                    </div>
-                    <span class="stock-count">22</span>
-                </div>
-                <div class="widget-row">
-                    <div class="row-info">
-                        <span class="row-main">Kabel HDMI 2m</span>
-                        <span class="row-sub">Elektronik</span>
-                    </div>
-                    <span class="stock-count stock-warning">5</span>
-                </div>
-                <div class="widget-row">
-                    <div class="row-info">
-                        <span class="row-main">Buku Nota A6</span>
-                        <span class="row-sub">Kertas & ATK</span>
-                    </div>
-                    <span class="stock-count">110</span>
-                </div>
+                {{end}}
             </div>
         </div>
         <div class="widget-card">
@@ -83,41 +57,17 @@
                 <a href="#" class="widget-link">Lihat semua</a>
             </div>
             <div class="widget-list">
+                {{range .RecentMovements}}
                 <div class="widget-row">
                     <div class="row-info">
-                        <span class="row-main">Kertas A4 80gr</span>
-                        <span class="row-sub">2 menit yang lalu</span>
+                        <span class="row-main">{{.ProductName}}</span>
+                        <span class="row-sub">{{timeAgo .CreatedAt}}</span>
                     </div>
-                    <span class="badge badge-masuk">+50 masuk</span>
+                    <span class="badge {{if eq .Type "in"}}badge-masuk{{else if eq .Type "out"}}badge-keluar{{else}}badge-adjustment{{end}}">
+                        {{if gt .Qty 0}}+{{end}}{{.Qty}} {{.Type}}
+                    </span>
                 </div>
-                <div class="widget-row">
-                    <div class="row-info">
-                        <span class="row-main">Tinta Printer HP Black</span>
-                        <span class="row-sub">15 menit yang lalu</span>
-                    </div>
-                    <span class="badge badge-keluar">−2 keluar</span>
-                </div>
-                <div class="widget-row">
-                    <div class="row-info">
-                        <span class="row-main">Flashdisk 32GB Sandisk</span>
-                        <span class="row-sub">1 jam yang lalu</span>
-                    </div>
-                    <span class="badge badge-masuk">+10 masuk</span>
-                </div>
-                <div class="widget-row">
-                    <div class="row-info">
-                        <span class="row-main">Kabel HDMI 2m</span>
-                        <span class="row-sub">3 jam yang lalu</span>
-                    </div>
-                    <span class="badge badge-keluar">−1 keluar</span>
-                </div>
-                <div class="widget-row">
-                    <div class="row-info">
-                        <span class="row-main">Buku Nota A6</span>
-                        <span class="row-sub">5 jam yang lalu</span>
-                    </div>
-                    <span class="badge badge-keluar">−10 keluar</span>
-                </div>
+                {{end}}
             </div>
         </div>
     </div>
